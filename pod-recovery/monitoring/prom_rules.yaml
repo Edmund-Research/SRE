@@ -1,0 +1,10 @@
+groups:
+- name: payment.rules
+  rules:
+  - alert: PaymentPodRestarted
+    expr: increase(kube_pod_container_status_restarts_total{job="kube-state-metrics",label_app="payment"}[5m]) > 0
+    for: 1m
+    labels: { severity: warning }
+    annotations:
+      summary: "Payment pod restart detected"
+      description: "A payment pod has restarted in the last 5 minutes."
