@@ -2,6 +2,13 @@
 
 **Objective:** Validate that payment pods auto-recover within 60 seconds of unexpected termination.
 
+## Prerequisites
+
+- Kubernetes cluster with `kubectl` access  
+- Prometheus & Grafana installed, scraping `payment` metrics  
+- `jq` for JSON parsing  
+- Bash shell on Linux/Mac (or WSL on Windows)
+
 ## Steps
 
 1. **Identify Pod**  
