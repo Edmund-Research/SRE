@@ -1,0 +1,28 @@
+{
+    "__inputs": [],
+    "__requires": [],
+    "panels": [
+      {
+        "type": "timeseries",
+        "title": "Network Ingress (bytes/sec)",
+        "targets": [
+          { "expr": "sum(rate(node_network_receive_bytes_total[5m])) by (instance)" }
+        ]
+      },
+      {
+        "type": "annotation",
+        "title": "Anomaly Alerts",
+        "targets": [
+          { "expr": "anomaly_score == 1" }
+        ]
+      },
+      {
+        "type": "table",
+        "title": "Autoscale Events",
+        "targets": [
+          { "expr": "count_over_time(aws_autoscaling_group_desired_capacity[1h])" }
+        ]
+      }
+    ],
+    "title": "Network Autoscale & Anomalies"
+  }

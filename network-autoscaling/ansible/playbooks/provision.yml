@@ -1,0 +1,13 @@
+- name: Provision AWS Infrastructure via Terraform
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Terraform Init
+      ansible.builtin.command:
+        cmd: terraform init
+        chdir: ../../terraform
+
+    - name: Terraform Apply (Scale-out or First Provision)
+      ansible.builtin.command:
+          cmd: terraform apply -auto-approve
+        chdir: ../../terraform
